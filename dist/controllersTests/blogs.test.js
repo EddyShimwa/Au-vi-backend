@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const mongoose_1 = __importDefault(require("mongoose"));
-const Blog_1 = __importDefault(require("../models/Blog"));
+const Image_1 = __importDefault(require("../models/Image"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const app_1 = __importDefault(require("../app"));
 dotenv_1.default.config();
 jest.setTimeout(30000);
-jest.mock('../Middleware/authsMiddleware', () => ({
+jest.mock('../../src/Middleware/authsMiddleware.ts', () => ({
     isAuthenticated: (req, res, next) => {
         req.user = {
             id: 'testUserId',
@@ -64,7 +64,7 @@ describe('POST /blogs/createBlog', () => {
 // Tests for /blogs/editBlog/:id endpoint
 describe('PUT /blogs/editBlog/:id', () => {
     it('should edit a blog and return 200 status', () => __awaiter(void 0, void 0, void 0, function* () {
-        const blog = new Blog_1.default({
+        const blog = new Image_1.default({
             title: 'Test Blog',
             description: 'This is a test blog',
             image: 'test.jpg',
@@ -90,7 +90,7 @@ describe('GET /blogs/all', () => {
 // Tests for /blogs/incrementLikes/:id endpoint
 describe('POST /blogs/incrementLikes/:id', () => {
     it('should increment likes of a blog and return 200 status', () => __awaiter(void 0, void 0, void 0, function* () {
-        const blog = new Blog_1.default({
+        const blog = new Image_1.default({
             title: 'Test Blog',
             description: 'This is a test blog',
             image: 'test.jpg',
